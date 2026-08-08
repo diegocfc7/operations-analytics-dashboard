@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,33 +34,85 @@
 
         <section>
             <h2>Executive Overview</h2>
-            <p>Visão consolidada dos principais indicadores operacionais.</p>
+            <p>
+                Consolidated view of key operational performance indicators.
+            </p>
+
+            <div class="filters">
+
+                <div class="filter-group">
+                    <label for="periodFilter">Period</label>
+                    <select id="periodFilter">
+                        <option value="all">All Period</option>
+                        <option value="week1">Aug 01–07</option>
+                        <option value="week2">Aug 08–14</option>
+                        <option value="week3">Aug 15–21</option>
+                        <option value="week4">Aug 22–28</option>
+                        <option value="week5">Aug 29–31</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="regionFilter">Region</label>
+                    <select id="regionFilter">
+                        <option value="all">All Regions</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="teamFilter">Team</label>
+                    <select id="teamFilter">
+                        <option value="all">All Teams</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="serviceFilter">Service Type</label>
+                    <select id="serviceFilter">
+                        <option value="all">All Services</option>
+                    </select>
+                </div>
+
+                <button id="resetFilters">
+                    Reset Filters
+                </button>
+
+            </div>
+
         </section>
 
         <section class="kpi-grid">
 
             <article class="kpi-card">
                 <span>Total Operations</span>
-                <strong>2,847</strong>
-                <small>↑ 8.4% vs. previous period</small>
+                <strong id="totalOperations">0</strong>
+                <small id="operationsVariation">
+                    Operational volume
+                </small>
             </article>
 
             <article class="kpi-card">
                 <span>Conversion Rate</span>
-                <strong>31.8%</strong>
-                <small>↑ 2.6 p.p.</small>
+                <strong id="conversionRate">0%</strong>
+                <small id="conversionVariation">
+                    Converted operations
+                </small>
             </article>
 
             <article class="kpi-card">
                 <span>SLA Compliance</span>
-                <strong>94.2%</strong>
-                <small>↑ 1.8 p.p.</small>
+                <strong id="slaCompliance">0%</strong>
+                <small id="slaVariation">
+                    Operations within SLA
+                </small>
             </article>
 
             <article class="kpi-card">
                 <span>Avg. Response Time</span>
-                <strong>12m 42s</strong>
-                <small>↓ 1m 18s</small>
+                <strong id="avgResponseTime">0m</strong>
+                <small id="responseVariation">
+                    Average response time
+                </small>
             </article>
 
         </section>
@@ -69,48 +121,72 @@
 
             <article class="chart-card">
                 <h3>Operational Performance</h3>
-                <p>Volume and conversion trend</p>
-                <canvas id="performanceChart"></canvas>
+                <p>Daily volume and conversion trend</p>
+
+                <div class="chart-wrapper">
+                    <canvas id="performanceChart"></canvas>
+                </div>
             </article>
 
             <article class="chart-card">
                 <h3>Non-Conversion Analysis</h3>
                 <p>Main operational drivers</p>
-                <canvas id="nonConversionChart"></canvas>
+
+                <div class="chart-wrapper">
+                    <canvas id="nonConversionChart"></canvas>
+                </div>
             </article>
 
         </section>
 
         <section>
-            <h2>Operational Insights</h2>
+            <div class="section-heading">
+                <div>
+                    <h2>Operational Insights</h2>
+                    <p>
+                        Automated observations generated from the selected data.
+                    </p>
+                </div>
+
+                <span id="dataStatus">
+                    All operations
+                </span>
+            </div>
 
             <div class="insights-grid">
 
                 <article>
-                    <strong>↗ Conversion improvement</strong>
-                    <p>
-                        Conversion increased 2.6 percentage points compared
-                        with the previous period.
+                    <strong id="insight1Title">
+                        Performance overview
+                    </strong>
+
+                    <p id="insight1Text">
+                        Analyzing operational data...
                     </p>
                 </article>
 
                 <article>
-                    <strong>⚡ Response time improvement</strong>
-                    <p>
-                        Average response time decreased by 1m18s while
-                        operational volume increased.
+                    <strong id="insight2Title">
+                        Operational efficiency
+                    </strong>
+
+                    <p id="insight2Text">
+                        Analyzing operational data...
                     </p>
                 </article>
 
                 <article>
-                    <strong>◎ Main opportunity</strong>
-                    <p>
-                        Network availability represents the largest share
-                        of non-converted operations.
+                    <strong id="insight3Title">
+                        Main opportunity
+                    </strong>
+
+                    <p id="insight3Text">
+                        Analyzing operational data...
                     </p>
                 </article>
 
             </div>
+
         </section>
 
     </main>
@@ -119,6 +195,7 @@
         <p>
             Operations Analytics Dashboard • Demo Project
         </p>
+
         <p>
             Synthetic data — no real operational information is used.
         </p>
