@@ -207,7 +207,7 @@ function generateOperations() {
                     serviceType
                 );
 
-            const slaThreshold = 15;
+            const slaThreshold = 17.5;
 
             operations.push({
 
