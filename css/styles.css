@@ -363,3 +363,184 @@ footer p + p {
         font-size: 1.8rem;
     }
 }
+
+/* =========================
+   FILTERS
+   ========================= */
+
+.filters {
+    display: flex;
+    align-items: end;
+    gap: 14px;
+    flex-wrap: wrap;
+
+    margin-top: 24px;
+
+    padding: 18px;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+
+    box-shadow: var(--shadow);
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    min-width: 160px;
+}
+
+.filter-group label {
+    color: var(--text-secondary);
+
+    font-size: 0.74rem;
+    font-weight: 700;
+}
+
+.filter-group select {
+    min-height: 40px;
+
+    padding: 0 34px 0 12px;
+
+    background: var(--surface-soft);
+
+    color: var(--text);
+
+    border: 1px solid var(--border);
+    border-radius: 9px;
+
+    font: inherit;
+    font-size: 0.83rem;
+
+    cursor: pointer;
+}
+
+.filter-group select:focus {
+    outline: 2px solid
+        rgba(37, 99, 235, 0.2);
+
+    border-color:
+        var(--primary-light);
+}
+
+#resetFilters {
+    min-height: 40px;
+
+    padding: 0 18px;
+
+    border: none;
+    border-radius: 9px;
+
+    background:
+        var(--primary);
+
+    color: white;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+#resetFilters:hover {
+    background:
+        var(--primary-light);
+
+    transform:
+        translateY(-1px);
+}
+
+
+/* =========================
+   CHART SIZE
+   ========================= */
+
+.chart-wrapper {
+    position: relative;
+
+    height: 310px;
+}
+
+
+/* =========================
+   SECTION HEADING
+   ========================= */
+
+.section-heading {
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        flex-end;
+
+    gap: 20px;
+
+    margin-bottom: 20px;
+}
+
+.section-heading h2 {
+    font-size: 1.35rem;
+    margin-bottom: 4px;
+}
+
+.section-heading p {
+    color:
+        var(--text-secondary);
+}
+
+#dataStatus {
+    display: inline-block;
+
+    padding: 7px 12px;
+
+    background:
+        var(--primary-soft);
+
+    color:
+        var(--primary);
+
+    border-radius: 999px;
+
+    font-size: 0.72rem;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+/* =========================
+   MOBILE FILTERS
+   ========================= */
+
+@media (max-width: 760px) {
+
+    .filters {
+        align-items: stretch;
+    }
+
+    .filter-group {
+        width: 100%;
+    }
+
+    #resetFilters {
+        width: 100%;
+    }
+
+    .section-heading {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #dataStatus {
+        white-space: normal;
+    }
+}
