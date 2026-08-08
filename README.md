@@ -9,6 +9,9 @@ Interactive dashboard for **operational performance, analytics and decision supp
 
 👉 **[Open the Operations Analytics Dashboard](https://diegocfc7.github.io/operations-analytics-dashboard/)**
 
+## 🖥️ Preview
+
+![Operations Analytics Dashboard](dashboard-preview.png)
 ---
 
 ## 🎯 Project Purpose
