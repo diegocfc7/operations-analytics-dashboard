@@ -1,1 +1,365 @@
+/* =========================================================
+   OPERATIONS ANALYTICS DASHBOARD
+   Author: Diego
+   ========================================================= */
 
+:root {
+    --bg: #f4f7fb;
+    --surface: #ffffff;
+    --surface-soft: #f8fafc;
+
+    --primary: #0f3d91;
+    --primary-light: #2563eb;
+    --primary-soft: #eaf2ff;
+
+    --text: #172033;
+    --text-secondary: #667085;
+    --border: #e3e8ef;
+
+    --success: #15803d;
+    --warning: #b45309;
+    --danger: #b42318;
+
+    --shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    --radius: 16px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+}
+
+/* =========================
+   HEADER
+   ========================= */
+
+header {
+    background:
+        linear-gradient(
+            135deg,
+            #071a3d 0%,
+            #0f3d91 55%,
+            #1d4ed8 100%
+        );
+
+    color: white;
+
+    padding: 42px max(24px, calc((100% - 1400px) / 2));
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+
+header span {
+    display: inline-block;
+
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+
+    opacity: 0.8;
+
+    margin-bottom: 8px;
+}
+
+header h1 {
+    font-size: clamp(1.8rem, 4vw, 2.7rem);
+    line-height: 1.15;
+
+    margin-bottom: 8px;
+}
+
+header p {
+    opacity: 0.82;
+    font-size: 1rem;
+}
+
+header > div:last-child span {
+    background: rgba(255, 255, 255, 0.12);
+
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+
+    padding: 8px 14px;
+    margin: 0;
+
+    white-space: nowrap;
+}
+
+/* =========================
+   MAIN
+   ========================= */
+
+main {
+    width: min(1400px, calc(100% - 48px));
+    margin: 0 auto;
+    padding: 38px 0 60px;
+}
+
+section {
+    margin-bottom: 36px;
+}
+
+section > h2 {
+    font-size: 1.35rem;
+    margin-bottom: 4px;
+}
+
+section > p {
+    color: var(--text-secondary);
+}
+
+/* =========================
+   KPI CARDS
+   ========================= */
+
+.kpi-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 18px;
+
+    margin-top: 22px;
+}
+
+.kpi-card {
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+
+    padding: 22px;
+
+    box-shadow: var(--shadow);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.kpi-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 30px rgba(15, 23, 42, 0.09);
+}
+
+.kpi-card span {
+    display: block;
+
+    color: var(--text-secondary);
+
+    font-size: 0.82rem;
+    font-weight: 600;
+
+    margin-bottom: 12px;
+}
+
+.kpi-card strong {
+    display: block;
+
+    font-size: 2rem;
+    line-height: 1;
+
+    margin-bottom: 12px;
+
+    letter-spacing: -0.03em;
+}
+
+.kpi-card small {
+    color: var(--success);
+
+    font-weight: 600;
+    font-size: 0.78rem;
+}
+
+/* =========================
+   DASHBOARD GRID
+   ========================= */
+
+.dashboard-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.7fr)
+        minmax(320px, 1fr);
+
+    gap: 18px;
+}
+
+.chart-card {
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+
+    padding: 24px;
+
+    box-shadow: var(--shadow);
+
+    min-width: 0;
+}
+
+.chart-card h3 {
+    font-size: 1rem;
+    margin-bottom: 2px;
+}
+
+.chart-card > p {
+    color: var(--text-secondary);
+
+    font-size: 0.82rem;
+
+    margin-bottom: 24px;
+}
+
+.chart-card canvas {
+    width: 100% !important;
+    max-height: 330px;
+}
+
+/* =========================
+   INSIGHTS
+   ========================= */
+
+.insights-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 18px;
+
+    margin-top: 20px;
+}
+
+.insights-grid article {
+    position: relative;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+
+    padding: 22px;
+
+    box-shadow: var(--shadow);
+
+    overflow: hidden;
+}
+
+.insights-grid article::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 4px;
+    height: 100%;
+
+    background: var(--primary-light);
+}
+
+.insights-grid strong {
+    display: block;
+
+    font-size: 0.92rem;
+
+    margin-bottom: 9px;
+}
+
+.insights-grid p {
+    color: var(--text-secondary);
+
+    font-size: 0.84rem;
+}
+
+/* =========================
+   FOOTER
+   ========================= */
+
+footer {
+    border-top: 1px solid var(--border);
+
+    background: var(--surface);
+
+    color: var(--text-secondary);
+
+    text-align: center;
+
+    padding: 28px 20px;
+
+    font-size: 0.78rem;
+}
+
+footer p + p {
+    margin-top: 4px;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 1050px) {
+
+    .kpi-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 760px) {
+
+    header {
+        padding: 30px 24px;
+
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    main {
+        width: min(100% - 30px, 1400px);
+        padding-top: 28px;
+    }
+
+    .insights-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 520px) {
+
+    .kpi-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .kpi-card strong {
+        font-size: 1.8rem;
+    }
+}
