@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Operations Analytics Dashboard</title>
+
+    <meta
+        name="description"
+        content="Interactive dashboard for operational performance, analytics and decision support."
+    >
+
+    <link rel="stylesheet" href="css/styles.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <div>
+            <span>OPERATIONS INTELLIGENCE</span>
+            <h1>Operations Analytics Dashboard</h1>
+            <p>Operational performance, analytics & decision support</p>
+        </div>
+
+        <div>
+            <span>Demo Environment</span>
+        </div>
+    </header>
+
+    <main>
+
+        <section>
+            <h2>Executive Overview</h2>
+            <p>Visão consolidada dos principais indicadores operacionais.</p>
+        </section>
+
+        <section class="kpi-grid">
+
+            <article class="kpi-card">
+                <span>Total Operations</span>
+                <strong>2,847</strong>
+                <small>↑ 8.4% vs. previous period</small>
+            </article>
+
+            <article class="kpi-card">
+                <span>Conversion Rate</span>
+                <strong>31.8%</strong>
+                <small>↑ 2.6 p.p.</small>
+            </article>
+
+            <article class="kpi-card">
+                <span>SLA Compliance</span>
+                <strong>94.2%</strong>
+                <small>↑ 1.8 p.p.</small>
+            </article>
+
+            <article class="kpi-card">
+                <span>Avg. Response Time</span>
+                <strong>12m 42s</strong>
+                <small>↓ 1m 18s</small>
+            </article>
+
+        </section>
+
+        <section class="dashboard-grid">
+
+            <article class="chart-card">
+                <h3>Operational Performance</h3>
+                <p>Volume and conversion trend</p>
+                <canvas id="performanceChart"></canvas>
+            </article>
+
+            <article class="chart-card">
+                <h3>Non-Conversion Analysis</h3>
+                <p>Main operational drivers</p>
+                <canvas id="nonConversionChart"></canvas>
+            </article>
+
+        </section>
+
+        <section>
+            <h2>Operational Insights</h2>
+
+            <div class="insights-grid">
+
+                <article>
+                    <strong>↗ Conversion improvement</strong>
+                    <p>
+                        Conversion increased 2.6 percentage points compared
+                        with the previous period.
+                    </p>
+                </article>
+
+                <article>
+                    <strong>⚡ Response time improvement</strong>
+                    <p>
+                        Average response time decreased by 1m18s while
+                        operational volume increased.
+                    </p>
+                </article>
+
+                <article>
+                    <strong>◎ Main opportunity</strong>
+                    <p>
+                        Network availability represents the largest share
+                        of non-converted operations.
+                    </p>
+                </article>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>
+            Operations Analytics Dashboard • Demo Project
+        </p>
+        <p>
+            Synthetic data — no real operational information is used.
+        </p>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/charts.js"></script>
+    <script src="js/app.js"></script>
+
+</body>
+</html>
