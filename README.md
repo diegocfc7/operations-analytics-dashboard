@@ -11,7 +11,7 @@ Interactive dashboard for **operational performance, analytics and decision supp
 
 ## 🖥️ Preview
 
-![Operations Analytics Dashboard](dashboard-preview.png)
+![Operations Analytics Dashboard](Print%20Dashboard.png)
 ---
 
 ## 🎯 Project Purpose
