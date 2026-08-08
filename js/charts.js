@@ -1,6 +1,6 @@
 /* =========================================================
    OPERATIONS ANALYTICS DASHBOARD
-   Chart configuration
+   Dynamic chart management
    ========================================================= */
 
 Chart.defaults.font.family =
@@ -9,247 +9,269 @@ Chart.defaults.font.family =
 Chart.defaults.color = "#667085";
 
 
+let performanceChart;
+let nonConversionChart;
+
+
 /* =========================================================
-   OPERATIONAL PERFORMANCE
+   PERFORMANCE CHART
    ========================================================= */
 
-const performanceContext =
-    document.getElementById("performanceChart");
+function renderPerformanceChart(data) {
 
-new Chart(performanceContext, {
+    const context =
+        document.getElementById(
+            "performanceChart"
+        );
 
-    type: "bar",
+    if (performanceChart) {
+        performanceChart.destroy();
+    }
 
-    data: {
+    performanceChart =
+        new Chart(context, {
 
-        labels: dashboardData.performance.labels,
+            type: "bar",
 
-        datasets: [
+            data: {
 
-            {
-                type: "bar",
-                label: "Operations",
+                labels:
+                    data.labels,
 
-                data:
-                    dashboardData.performance.operations,
+                datasets: [
 
-                backgroundColor:
-                    "rgba(37, 99, 235, 0.18)",
+                    {
+                        type: "bar",
 
-                borderColor:
-                    "#2563eb",
+                        label:
+                            "Operations",
 
-                borderWidth: 1,
+                        data:
+                            data.operations,
 
-                borderRadius: 6,
+                        backgroundColor:
+                            "rgba(37, 99, 235, 0.18)",
 
-                yAxisID: "y"
+                        borderColor:
+                            "#2563eb",
+
+                        borderWidth: 1,
+
+                        borderRadius: 6,
+
+                        yAxisID: "y"
+                    },
+
+                    {
+                        type: "line",
+
+                        label:
+                            "Conversion Rate",
+
+                        data:
+                            data.conversion,
+
+                        borderColor:
+                            "#0f3d91",
+
+                        backgroundColor:
+                            "#0f3d91",
+
+                        borderWidth: 3,
+
+                        pointRadius: 4,
+
+                        pointHoverRadius: 6,
+
+                        tension: 0.35,
+
+                        yAxisID: "y1"
+                    }
+
+                ]
             },
 
-            {
-                type: "line",
-                label: "Conversion Rate",
+            options: {
 
-                data:
-                    dashboardData.performance.conversion,
+                responsive: true,
 
-                borderColor:
-                    "#0f3d91",
+                maintainAspectRatio: false,
 
-                backgroundColor:
-                    "#0f3d91",
+                interaction: {
+                    mode: "index",
+                    intersect: false
+                },
 
-                borderWidth: 3,
+                plugins: {
 
-                pointRadius: 4,
+                    legend: {
+                        position: "bottom",
 
-                pointHoverRadius: 6,
-
-                tension: 0.35,
-
-                yAxisID: "y1"
-            }
-
-        ]
-    },
-
-    options: {
-
-        responsive: true,
-
-        maintainAspectRatio: false,
-
-        interaction: {
-            mode: "index",
-            intersect: false
-        },
-
-        plugins: {
-
-            legend: {
-                position: "bottom",
-
-                labels: {
-                    usePointStyle: true,
-                    padding: 20
-                }
-            },
-
-            tooltip: {
-
-                callbacks: {
-
-                    label: function(context) {
-
-                        if (
-                            context.dataset.label ===
-                            "Conversion Rate"
-                        ) {
-                            return (
-                                " Conversion: " +
-                                context.raw +
-                                "%"
-                            );
+                        labels: {
+                            usePointStyle: true,
+                            padding: 20
                         }
+                    },
 
-                        return (
-                            " Operations: " +
-                            context.raw
-                        );
-                    }
-                }
-            }
-        },
+                    tooltip: {
 
-        scales: {
+                        callbacks: {
 
-            y: {
+                            label(context) {
 
-                beginAtZero: true,
+                                if (
+                                    context.dataset.label ===
+                                    "Conversion Rate"
+                                ) {
 
-                grid: {
-                    color:
-                        "rgba(148, 163, 184, 0.15)"
-                },
+                                    return (
+                                        ` Conversion: ${context.raw}%`
+                                    );
+                                }
 
-                title: {
-                    display: true,
-                    text: "Operations"
-                }
-            },
-
-            y1: {
-
-                position: "right",
-
-                beginAtZero: true,
-
-                suggestedMax: 50,
-
-                grid: {
-                    drawOnChartArea: false
-                },
-
-                ticks: {
-
-                    callback: function(value) {
-                        return value + "%";
+                                return (
+                                    ` Operations: ${context.raw}`
+                                );
+                            }
+                        }
                     }
                 },
 
-                title: {
-                    display: true,
-                    text: "Conversion"
-                }
-            },
+                scales: {
 
-            x: {
+                    y: {
 
-                grid: {
-                    display: false
+                        beginAtZero: true,
+
+                        grid: {
+                            color:
+                                "rgba(148, 163, 184, 0.15)"
+                        },
+
+                        title: {
+                            display: true,
+                            text: "Operations"
+                        }
+                    },
+
+                    y1: {
+
+                        position: "right",
+
+                        beginAtZero: true,
+
+                        suggestedMax: 50,
+
+                        grid: {
+                            drawOnChartArea: false
+                        },
+
+                        ticks: {
+
+                            callback(value) {
+                                return value + "%";
+                            }
+                        },
+
+                        title: {
+                            display: true,
+                            text: "Conversion"
+                        }
+                    },
+
+                    x: {
+                        grid: {
+                            display: false
+                        }
+                    }
                 }
             }
-        }
-    }
-});
+        });
+}
 
 
 /* =========================================================
-   NON-CONVERSION ANALYSIS
+   NON-CONVERSION CHART
    ========================================================= */
 
-const nonConversionContext =
-    document.getElementById("nonConversionChart");
+function renderNonConversionChart(data) {
 
-new Chart(nonConversionContext, {
+    const context =
+        document.getElementById(
+            "nonConversionChart"
+        );
 
-    type: "doughnut",
+    if (nonConversionChart) {
+        nonConversionChart.destroy();
+    }
 
-    data: {
+    nonConversionChart =
+        new Chart(context, {
 
-        labels:
-            dashboardData.nonConversion.labels,
+            type: "doughnut",
 
-        datasets: [
+            data: {
 
-            {
-                data:
-                    dashboardData.nonConversion.values,
+                labels:
+                    data.labels,
 
-                backgroundColor: [
-                    "#0f3d91",
-                    "#2563eb",
-                    "#60a5fa",
-                    "#93c5fd",
-                    "#bfdbfe",
-                    "#dbeafe"
-                ],
+                datasets: [
 
-                borderWidth: 0,
+                    {
+                        data:
+                            data.values,
 
-                hoverOffset: 8
-            }
+                        backgroundColor: [
+                            "#0f3d91",
+                            "#2563eb",
+                            "#60a5fa",
+                            "#93c5fd",
+                            "#bfdbfe",
+                            "#dbeafe"
+                        ],
 
-        ]
-    },
+                        borderWidth: 0,
 
-    options: {
+                        hoverOffset: 8
+                    }
 
-        responsive: true,
-
-        maintainAspectRatio: false,
-
-        cutout: "68%",
-
-        plugins: {
-
-            legend: {
-
-                position: "bottom",
-
-                labels: {
-                    usePointStyle: true,
-                    padding: 16,
-                    boxWidth: 8
-                }
+                ]
             },
 
-            tooltip: {
+            options: {
 
-                callbacks: {
+                responsive: true,
 
-                    label: function(context) {
+                maintainAspectRatio: false,
 
-                        return (
-                            " " +
-                            context.label +
-                            ": " +
-                            context.raw +
-                            "%"
-                        );
+                cutout: "68%",
+
+                plugins: {
+
+                    legend: {
+
+                        position: "bottom",
+
+                        labels: {
+                            usePointStyle: true,
+                            padding: 14,
+                            boxWidth: 8
+                        }
+                    },
+
+                    tooltip: {
+
+                        callbacks: {
+
+                            label(context) {
+
+                                return (
+                                    ` ${context.label}: ${context.raw}%`
+                                );
+                            }
+                        }
                     }
                 }
             }
-        }
-    }
-});
+        });
+}
